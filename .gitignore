@@ -1,5 +1,5 @@
 # Qt config files
-Log4Qt.pro.user
+./Log4Qt.pro.user
 
 # Prerequisites
 *.d
