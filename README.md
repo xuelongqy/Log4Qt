@@ -24,7 +24,7 @@ struct LogConfig
     QString path = "./log";
     // Date format(日期格式)
     QString dataType = "yyyy-MM-dd hh:mm:ss:zzz";
-    // Log pattern(日志输出规则)
+    // Log pattern %D[Date and Time] %T[Log type] %M[Message](日志输出规则,%D[日期和时间] %T[日志类型] %M[信息])
     QString pattern = "%D %T %M";
     // Console config(控制台配置)
     bool outConsole = true;
