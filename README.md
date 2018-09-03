@@ -52,6 +52,7 @@ qmlRegisterType<Logger>("com.knoyo.logger", 1, 0, "Logger");
 
 ```C++
 Use in C++(在C++中使用)
+#include <logger.h>
 Logger::d("...");
 Logger::i("...");
 Logger::w("...");
