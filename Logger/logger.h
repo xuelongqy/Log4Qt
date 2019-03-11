@@ -1,11 +1,19 @@
 ﻿#ifndef LOGGER_H
 #define LOGGER_H
-#include "logger_global.h"
+
+#define LOG_ERROR(x)  Logger::e(QVariant(QString(__FILE__)+" : "+QString(__func__)+" : "+QString::number(__LINE__)+" # "+QVariant(x).toString()))
+#define LOG_INFO(x)  Logger::i(QVariant(QString(__FILE__)+" : "+QString(__func__)+" : "+QString::number(__LINE__)+" # "+QVariant(x).toString()))
+#define LOG_DEBUG(x)  Logger::d(QVariant(QString(__FILE__)+" : "+QString(__func__)+" : "+QString::number(__LINE__)+" # "+QVariant(x).toString()))
+#define LOG_WARM(x)  Logger::w(QVariant(QString(__FILE__)+" : "+QString(__func__)+" : "+QString::number(__LINE__)+" # "+QVariant(x).toString()))
+
+
 #include <QString>
 #include <QFile>
+#include <QVariant>
+
 
 // 日志类型枚举
-enum LogType {DEBUG=1, INFO=2, WARNING=3, ERROR=4};
+enum LogType {LOG_DEBUG=1, LOG_INFO=2, LOG_WARNING=3, LOG_ERROR=4};
 // 配置结构体
 struct LogConfig
 {
@@ -17,13 +25,13 @@ struct LogConfig
     QString pattern = "%D %T %M";
     // 控制台配置
     bool outConsole = true;
-    LogType consoleType = LogType::DEBUG;
+    LogType consoleType = LogType::LOG_DEBUG;
     // 文件配置
     bool outFile = true;
-    LogType fileType = LogType::DEBUG;
+    LogType fileType = LogType::LOG_DEBUG;
 };
 
-class LOGGERSHARED_EXPORT Logger: public QObject
+class  Logger: public QObject
 {
     Q_OBJECT
 public:
@@ -68,10 +76,11 @@ public:
      * @update_author
      * @update_time
      * @version V1.0
-     * @param msg [QString] 日志内容
+     * @param msg [QVariant] 日志内容
      * @return
     */
-    Q_INVOKABLE static void d(QString msg);
+//    Q_INVOKABLE static void d(QString msg);
+    Q_INVOKABLE static void d(QVariant msg);
 
     /**
      * @Title: d方法
@@ -82,10 +91,10 @@ public:
      * @update_author
      * @update_time
      * @version V1.0
-     * @param msg [QString] 日志内容
+     * @param msg [QVariant] 日志内容
      * @return
     */
-    Q_INVOKABLE static void i(QString msg);
+    Q_INVOKABLE static void i(QVariant msg);
 
     /**
      * @Title: d方法
@@ -96,10 +105,10 @@ public:
      * @update_author
      * @update_time
      * @version V1.0
-     * @param msg [QString] 日志内容
+     * @param msg [QVariant] 日志内容
      * @return
     */
-    Q_INVOKABLE static void w(QString msg);
+    Q_INVOKABLE static void w(QVariant msg);
 
     /**
      * @Title: d方法
@@ -110,10 +119,10 @@ public:
      * @update_author
      * @update_time
      * @version V1.0
-     * @param msg [QString] 日志内容
+     * @param msg [QVariant] 日志内容
      * @return
     */
-    Q_INVOKABLE static void e(QString msg);
+    Q_INVOKABLE static void e(QVariant msg);
 
     /**
      * @Title: getLogPath方法
