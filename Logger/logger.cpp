@@ -3,6 +3,8 @@
 #include <QDir>
 #include "logger.h"
 
+
+
 LogConfig Logger::logConfig = LogConfig();
 
 void Logger::setLogConfig(LogConfig config)
@@ -31,24 +33,26 @@ void Logger::log(LogType type, QString msg)
     }
 }
 
-void Logger::d(QString msg)
+
+void Logger::d(QVariant msg)
 {
-    Logger::log(LogType::DEBUG, msg);
+    Logger::log(LogType::LOG_DEBUG, msg.toString());
 }
 
-void Logger::i(QString msg)
+void Logger::i(QVariant msg)
 {
-    Logger::log(LogType::INFO, msg);
+    Logger::log(LogType::LOG_INFO, msg.toString());
 }
 
-void Logger::w(QString msg)
+void Logger::w(QVariant msg)
 {
-    Logger::log(LogType::WARNING, msg);
+    Logger::log(LogType::LOG_WARNING, msg.toString());
+
 }
 
-void Logger::e(QString msg)
+void Logger::e(QVariant msg)
 {
-    Logger::log(LogType::ERROR, msg);
+    Logger::log(LogType::LOG_ERROR, msg.toString());
 }
 
 QString Logger::getLogPath()
@@ -93,13 +97,13 @@ QString Logger::getFile()
 
 QString Logger::getLogTypeName(LogType type)
 {
-    if (type == LogType::DEBUG) {
+    if (type == LogType::LOG_DEBUG) {
         return "[DEBUG]";
-    }else if (type == LogType::INFO) {
+    }else if (type == LogType::LOG_INFO) {
         return "[INFO]";
-    }else if (type == LogType::WARNING) {
+    }else if (type == LogType::LOG_WARNING) {
         return "[WARNING]";
-    }else if (type == LogType::ERROR) {
+    }else if (type == LogType::LOG_ERROR) {
         return "[ERROR]";
     }else {
         return "";
